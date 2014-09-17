@@ -22,6 +22,10 @@ task :getimg => :environment do
 			img = doc.at_css(".body-narrow-width img")[:src]
 			story.image = img
 			story.save!
+		elsif doc.at_css(".caption img")
+			img = doc.at_css(".caption img")[:src]
+			story.image = img
+			story.save!
 		end
 			
 

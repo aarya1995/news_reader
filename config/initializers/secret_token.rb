@@ -9,4 +9,20 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-NewsReader::Application.config.secret_key_base = '7e3c71f05830faa32c03325e2441203e70f0406b99855afcdc7e66444501a3196c0d02ad462e2974d724ed8593322b2fc68e4b031d0cec02052bcacd5fa87e9e'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+NewsReader::Application.config.secret_key_base = secure_token

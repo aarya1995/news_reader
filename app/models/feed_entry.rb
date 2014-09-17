@@ -30,6 +30,8 @@ class FeedEntry < ActiveRecord::Base
       unless exists? :guid => entry.id
       	if entry.title.include? "VIDEO:"
       		#do nothing
+        elsif entry.title.include? "AUDIO:"
+          #do nothing
       	else
 	        create!(
 	          :name         => entry.title, 
@@ -39,7 +41,7 @@ class FeedEntry < ActiveRecord::Base
 	          :guid         => entry.id,
 	          :category 	=> "world"
 	        )
-		end
+		    end
       end
     end
   end
