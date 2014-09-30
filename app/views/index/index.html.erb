@@ -1,3 +1,4 @@
+
 <h1> Top stories from BBC <h1>
 
 
@@ -11,9 +12,12 @@
 <div> 
 	<h3><%= story.name %></h3>
 	<p><%= story.summary %></p>
-	<img src="<%= story.image %>" width="450" height = "400">
+	<a href = "<%= story.url %>" >
+		<img src="<%= story.image %>" />
+	</a>
 </div>
 
 <% end %>
 
 <% end %>
+
