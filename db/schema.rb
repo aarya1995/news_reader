@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140916010759) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "feed_entries", force: true do |t|
     t.string   "name"
     t.text     "summary"
