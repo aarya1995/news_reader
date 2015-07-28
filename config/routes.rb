@@ -1,12 +1,21 @@
 NewsReader::Application.routes.draw do
 
-  resources :index
+  resources :index,  :except => [:show]
+  root 'index#top'
+  get "index/top" => "index#top"
+  get "index/world" => "index#world"
+  get "index/politics" => "index#politics"
+  get "index/test" => "index#test"
+
+  #get "static_pages/why_us"
+  
+  #get "orders/vegetarian" => "orders#vegetarian"
   #match '/index',  to: 'index#index',            via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  root 'index#index'
+  # You can have the root of your site routed with "root
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

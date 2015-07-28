@@ -1,0 +1,44 @@
+<div class="container content-area" style="margin-bottom: 5%;">
+<h1> BBC - World </h1>
+<hr style="border-top: 1px solid #3D3D3D;"> 
+
+ <div class="grid">
+	<% @stories.each do |story| %>
+	<div class="card float-left grid-item">
+
+	  <div class="card-image">
+	  	<% if story.image.nil? %>
+	  	  <a href = "<%= story.url %>" >
+			<img src="/assets/kwiknews-secondary.png"/>
+		  </a>
+		<% else %>
+		  <a href = "<%= story.url %>" >
+			<img src="<%= story.image %>"/>
+		  </a>
+		<% end %>
+		<h3 class="story-title"><%= story.name %></h3>		
+	  </div>
+	  <p><%= story.summary %></p>
+	  <hr class="card-hr">
+	  <p class="story-date" style="margin-bottom: 5px;">Date published: <%= format_time(story.published_at.to_s) %> </p>
+	</div>
+
+	<% end %>
+
+	<div id="infinite-scrolling">
+	  <%= will_paginate @stories %>
+	</div>
+ </div>
+</div>
+
+<script>
+  var $grid = $('.grid').imagesLoaded( function() {
+		$('.grid').masonry({
+		  // options
+		  itemSelector: '.grid-item',
+		  columnWidth: 300
+		});
+   });
+
+
+</script>
