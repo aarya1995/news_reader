@@ -9,7 +9,7 @@ class IndexController < ApplicationController
 
 	def world
 		@paginate = FeedEntry.paginate(:page => params[:page], :per_page => 20).order(created_at: :desc)
-		@stories = @paginate.where(category: 'World').all
+		@stories = @paginate.where(category: 'world').all
 	end
 
 	def politics

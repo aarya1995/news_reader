@@ -1,5 +1,5 @@
 <div class="container content-area" style="margin-bottom: 5%;">
-<h1> Top stories from BBC </h1>
+<h1> Top stories </h1>
 <hr style="border-top: 1px solid #3D3D3D;">
 
  <div class="grid">
@@ -24,35 +24,53 @@
 	</div>
 
 	<% end %>
-
-	<div id="infinite-scrolling">
-	  <%= will_paginate @stories %>
-	</div>
  </div> <!-- end of grid div -->
+ 
+ <div class="row pagination-row">
+ 	<div class="col-md-2"></div>
+	<div id="page-nav" class="col-md-8">
+		  <%= will_paginate @stories %>
+	</div>
+	<div class="col-md-2"></div>
+</div>
 </div> <!-- end of container div -->
 
 <script>
-  var $grid = $('.grid').imagesLoaded( function() {
-		$('.grid').masonry({
-		  // options
-		  itemSelector: '.grid-item',
-		  columnWidth: 300
-		});
-   });
-	
-	// infinitescroll() is called on the element that surrounds 
-// the items you will be loading more of
-  $('.grid').infinitescroll({
  
-    navSelector  : ".infinite-scrolling",            
-                   // selector for the paged navigation (it will be hidden)
-    nextSelector : ".infinite-scrolling a:first",    
-                   // selector for the NEXT link (to page 2)
-    itemSelector : ".grid-item"          
-                   // selector for all items you'll retrieve
+  $(function(){
+    
+    var $container = $('.grid');
+    
+    $container.imagesLoaded(function(){
+      $container.masonry({
+        itemSelector: '.grid-item',
+        columnWidth: 300
+      });
+    });
+    
+    /*
+    $container.infinitescroll({
+      navSelector  : '#page-nav',    // selector for the paged navigation 
+      nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
+      itemSelector : '.grid .grid-item',     // selector for all items you'll retrieve
+      loading: {
+          finishedMsg: 'No more pages to load.',
+          img: '/assets/ajax-loader.gif'
+        }
+      },
+      // trigger Masonry as a callback
+      function( newElements ) {
+        // hide new items while they are loading
+        var $newElems = $( newElements ).css({ opacity: 0 });
+        // ensure that images load before adding to masonry layout
+        $newElems.imagesLoaded(function(){
+          // show elems now they're ready
+          $newElems.animate({ opacity: 1 });
+          $container.masonry( 'appended', $newElems, true ); 
+        });
+      }
+    ); */
+    
   });
-
-  $(window).unbind('.infscr');
-  $(document).trigger('retrieve.infscr');
 
 </script>
