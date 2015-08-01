@@ -16,6 +16,11 @@
 	font-family: sans-serif;
 }
 
+.header-content {
+    background-color: #982395;
+    width: 100%;
+    color: white;
+}
 
 p {
 	/* font-size:15pt; */
@@ -137,7 +142,7 @@ img {
 }
 
 .content-area {
-    margin-top: 7%;
+    margin-top: 3%;
 }
 
 
@@ -187,17 +192,13 @@ body {
     font-weight: bold;
 }*/
 
-.story-date {
-    color: #B4B3B2;
-    margin-bottom: 5px;
-}
-
 .card-hr {
     margin-bottom: 10px;
     margin-top:7px;
 }
 
 .navbar {
+    border-radius: 0px;
     padding: 10px;
     padding-top: 12px;
     padding-bottom: 8px;
@@ -230,4 +231,33 @@ body {
 
 .pagination-row {
     margin-top: 3%;
+}
+
+.header-content {
+    font-family: 'Lato', sans-serif;
+    h1 {
+        font-weight: 100;
+    }
+
+    h3 {
+        font-weight: 200;
+    }
+
+}
+
+.header-content-row{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.card-info {
+    display: inline-block;
+    color: #B4B3B2;
+    margin-bottom: 5px;
+}
+
+#card-category {
+    position: relative;
+    left: 60px;
+    display: none;
 }

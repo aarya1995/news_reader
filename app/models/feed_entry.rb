@@ -16,6 +16,25 @@ class FeedEntry < ActiveRecord::Base
     elsif feed_url.eql? "http://feeds.bbci.co.uk/news/rss.xml" #BBC Top stories
         category = "top"
       	add_BBC_entries(feed.entries, category)
+    elsif feed_url.eql? "http://feeds.bbci.co.uk/news/business/rss.xml" #BBC business
+      category = "business"
+      add_BBC_entries(feed.entries, category)
+    elsif feed_url.eql? "http://feeds.bbci.co.uk/news/technology/rss.xml" #BBC tech
+      category = "technology"
+      add_BBC_entries(feed.entries, category)
+    elsif feed_url.eql? "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml" #BBC science
+      category = "science"
+      add_BBC_entries(feed.entries, category)
+    elsif feed_url.eql? "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml" #BBC entertainment
+      category = "entertainment"
+      add_BBC_entries(feed.entries, category)
+    elsif feed_url.eql? "http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml" #BBC US and Canada news
+      category = "US and Canada"
+      add_BBC_entries(feed.entries, category)
+    elsif feed_url.eql? "http://feeds.bbci.co.uk/sport/0/rss.xml?edition=uk" #BBC sports
+      category = "sports"
+      add_BBC_entries(feed.entries, category)
+    
     #elsif feed_url.eql? "http://rss.cnn.com/rss/cnn_topstories.rss" #CNN top stories
         #add_cnn_top_entries(feed.entries)
     #elsif feed_url.eql? "http://rss.cnn.com/rss/cnn_world.rss" #CNN world stories
@@ -57,6 +76,11 @@ class FeedEntry < ActiveRecord::Base
       end
     end
   end
+
+
+
+
+
 
 #---------------CNN Logic----------------------#
   def self.add_cnn_top_entries(entries)

@@ -2,10 +2,18 @@ NewsReader::Application.routes.draw do
 
   resources :index,  :except => [:show]
   root 'index#top'
-  get "index/top" => "index#top"
-  get "index/world" => "index#world"
-  get "index/politics" => "index#politics"
+
   get "index/test" => "index#test"
+
+  match 'news/us_and_canada', to: 'index#us_and_canada', via: 'get'
+  match 'news/tech', to: 'index#technology', via: 'get'
+  match 'news/business', to: 'index#business', via: 'get'
+  match 'news/world', to: 'index#world', via: 'get'
+  match 'news/top', to: 'index#top', via: 'get'
+  match 'news/science', to: 'index#science', via: 'get'
+  match 'news/entertainment', to: 'index#entertainment', via: 'get'
+  match 'news/sports', to: 'index#sports', via: 'get'
+  match 'news/politics', to: 'index#politics', via: 'get'
 
   #get "static_pages/why_us"
   

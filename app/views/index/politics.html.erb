@@ -1,7 +1,4 @@
 <div class="container content-area" style="margin-bottom: 5%;">
-<h1> Politics </h1>
-<hr style="border-top: 1px solid #3D3D3D;"> 
-
  <div class="grid">
 	<% @stories.each do |story| %>
 	<div class="card float-left grid-item">
@@ -20,7 +17,7 @@
 	  </div>
 	  <p><%= story.summary %></p>
 	  <hr class="card-hr">
-	  <p class="story-date" style="margin-bottom: 5px;">Date published: <%= format_time(story.published_at.to_s) %> </p>
+	  <p class="story-date card-info" style="margin-bottom: 5px;"><i class="fa fa-clock-o"></i> <%= format_time(story.published_at.to_s) %> </p>
 	</div>
 
 	<% end %>
@@ -36,13 +33,41 @@
 </div>
 
 <script>
-  var $grid = $('.grid').imagesLoaded( function() {
-		$('.grid').masonry({
-		  // options
-		  itemSelector: '.grid-item',
-		  columnWidth: 300
-		});
-   });
+  $(function(){
+    
+    var $container = $('.grid');
+    
+    $container.imagesLoaded(function(){
+      $container.masonry({
+        itemSelector: '.grid-item',
+        columnWidth: 300
+      });
+    });
+    
+    
+    $container.infinitescroll({
+      navSelector  : '#page-nav',    // selector for the paged navigation 
+      nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
+      itemSelector : '.grid .grid-item',     // selector for all items you'll retrieve
+      loading: {
+          finishedMsg: 'No more pages to load.',
+          img: '/assets/ajax-loader.gif'
+        }
+      },
+      // trigger Masonry as a callback
+      function( newElements ) {
+        // hide new items while they are loading
+        var $newElems = $( newElements ).css({ opacity: 0 });
+        // ensure that images load before adding to masonry layout
+        $newElems.imagesLoaded(function(){
+          // show elems now they're ready
+          $newElems.animate({ opacity: 1 });
+          $container.masonry( 'appended', $newElems, true ); 
+        });
+      }
+    ); 
+    
+  });
 
 
 </script>
