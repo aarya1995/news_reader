@@ -3,7 +3,7 @@ NewsReader::Application.routes.draw do
   resources :index,  :except => [:show]
   root 'index#top'
 
-  get "index/test" => "index#test"
+  #get "index/test" => "index#test"
 
   match 'news/us_and_canada', to: 'index#us_and_canada', via: 'get'
   match 'news/tech', to: 'index#technology', via: 'get'
